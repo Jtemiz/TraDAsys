@@ -1,0 +1,107 @@
+<!--
+Table of all available Filters
+-->
+
+<!-- Timepicker for choosing the time from-to-->
+<table class="table-responsive-lg">
+  <tbody>
+  <tr>
+    <td (dblclick)="timeFrom={ hour: 0, minute: 0, second: 0 }; updateDateTimeFromTo()">Timepicker von</td>
+    <td>
+      <ngb-timepicker [seconds]="true" [(ngModel)]="timeFrom" (ngModelChange)="updateDateTimeFromTo()"
+                      class="table-element"></ngb-timepicker>
+    </td>
+  </tr>
+  <tr>
+    <td (dblclick)="timeTo={hour: 23, minute: 59, second: 59}; updateDateTimeFromTo()">Timepicker bis</td>
+    <td>
+      <ngb-timepicker [seconds]="true" [(ngModel)]="timeTo" (ngModelChange)="updateDateTimeFromTo()"
+                      class="table-element"></ngb-timepicker>
+    </td>
+  </tr>
+  <!-- Flying-Pixel-Filter-->
+  <tr>
+    <td (dblclick)="filter.flyingPixDist=-1">Max. FlyingPixels</td>
+    <td>
+      <mat-slider aria-label="unit(s)" thumbLabel
+                  [(ngModel)]="filter.flyingPixDist" min="0." max="1." step="0.01" class="table-element"></mat-slider>
+    </td>
+  </tr>
+  <tr>
+    <td (dblclick)="filter.minFrameAmount=0">Mindestanzahl Frames pro Record</td>
+    <td>
+      <mat-slider aria-label="unit(s)" thumbLabel
+                  [(ngModel)]="filter.minFrameAmount" min="0" max="100" step="1" class="table-element"></mat-slider>
+    </td>
+  </tr>
+  <!-- Engagement-Filter -->
+  <tr>
+    <td (dblclick)="filter.engagementFrom=0; filter.engagementTo=1">Aufmerksamkeit min / max</td>
+    <td>
+      <mat-slider aria-label="unit(s)" thumbLabel
+                  [(ngModel)]="filter.engagementFrom" min="0." max="1." step="0.01" class="table-element"></mat-slider>
+      <mat-slider aria-label="unit(s)" thumbLabel
+                  [(ngModel)]="filter.engagementTo" min="0." max="1." step="0.01" class="table-element"></mat-slider>
+    </td>
+  </tr>
+  <tr>
+    <td (dblclick)="filter.minBodyAmount=0; filter.maxBodyAmount=6">Gleichzeitig auftretende Personen min / max</td>
+    <td>
+      <mat-slider aria-label="unit(s)" thumbLabel
+                  [(ngModel)]="filter.minBodyAmount" min="0" max="6" step="1" class="table-element"></mat-slider>
+      <mat-slider aria-label="unit(s)" thumbLabel
+                  [(ngModel)]="filter.maxBodyAmount" min="0" max="6" step="1" class="table-element"></mat-slider>
+    </td>
+  </tr>
+  <tr>
+    <td (dblclick)="filter.minDistance=0; filter.maxDistance=-1">Distanz zur Kamera in meter min / max</td>
+    <td>
+      <mat-slider aria-label="unit(s)" thumbLabel
+                  [(ngModel)]="filter.minDistance" min="0" max="10" step="0.1" class="table-element"></mat-slider>
+      <mat-slider aria-label="unit(s)" thumbLabel
+                  [(ngModel)]="filter.maxDistance" min="-1" max="10" step="0.1" class="table-element"></mat-slider>
+    </td>
+  </tr>
+  <!-- Category-Filter -->
+  <tr>
+    <td (dblclick)="filter.DisplayGroups=-1">Anzuzeigende Nutzergruppen</td>
+    <td class="cell-check-box">
+      <mat-radio-group aria-labelledby="example-radio-group-label" class="example-radio-group"
+                       [(ngModel)]="filter.DisplayGroups">
+        <mat-radio-button class="example-radio-button" [value]="-1"> Beide</mat-radio-button>
+        <mat-radio-button class="example-radio-button" [value]="0"> Interaktiv</mat-radio-button>
+        <mat-radio-button class="example-radio-button" [value]="1"> Passiv</mat-radio-button>
+      </mat-radio-group>
+    </td>
+  </tr>
+  <tr>
+    <td (dblclick)="filter.DisplayAttributes=[-1, -1, -1]">Nur Nutzer mit Eigenschaft</td>
+    <td class="cell-check-box">
+      <mat-radio-group aria-labelledby="example-radio-group-label" class="example-radio-group"
+                       [(ngModel)]="filter.DisplayAttributes[0]">
+        <label>Bewegt Mund</label>
+        <mat-radio-button class="example-radio-button" [value]="-1"> Egal</mat-radio-button>
+        <mat-radio-button class="example-radio-button" [value]="1"> Nur</mat-radio-button>
+        <mat-radio-button class="example-radio-button" [value]="0"> Ohne</mat-radio-button>
+      </mat-radio-group>
+      <mat-radio-group aria-labelledby="example-radio-group-label" class="example-radio-group"
+                       [(ngModel)]="filter.DisplayAttributes[1]">
+        <label>Happy</label>
+        <mat-radio-button class="example-radio-button" [value]="-1"> Egal</mat-radio-button>
+        <mat-radio-button class="example-radio-button" [value]="1"> Nur</mat-radio-button>
+        <mat-radio-button class="example-radio-button" [value]="0"> Ohne</mat-radio-button>
+      </mat-radio-group>
+    </td>
+  </tr>
+  <!-- Button for saving the new filters-->
+  <tr>
+    <td>
+      <button mat-raised-button color="primary" aria-label="Save Filter" class="save-button-custom"
+              (click)="transportFilter()">
+        <mat-icon>save</mat-icon>
+      </button>
+    </td>
+    <td></td>
+  </tr>
+  </tbody>
+</table>

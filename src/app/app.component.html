@@ -1,0 +1,57 @@
+<html>
+<header>
+  <!-- Upper navbar with UploadButton and Button to open SideNavBar -->
+  <mat-toolbar>
+    <button mat-icon-button *ngIf="sidenav.mode === 'over'" (click)="sidenav.toggle()">
+      <mat-icon id="OpenSideNavBtn" class="navbar-button-custom" *ngIf="!sidenav.opened">
+        menu
+      </mat-icon>
+      <mat-icon class="navbar-button-custom" *ngIf="sidenav.opened">
+        close
+      </mat-icon>
+    </button>
+    <a class="navbar-brand fixed-top logo-fixed-top-custom" *ngIf="sidenav.opened" href="#">
+      <img src="assets/images/logo.jpg" height="60">
+    </a>
+    <a class="navbar-brand fixed-top logo-fixed-top-custom" *ngIf="!sidenav.opened" href="#">
+      <img src="assets/images/logo.jpg" height="100">
+    </a>
+    <span class="example-spacer"></span>
+    <button mat-icon-button aria-label="Upload new File" (click)="openDialog()">
+      <mat-icon id="UploadButtonNavbar" class="navbar-button-custom">file_upload</mat-icon>
+    </button>
+  </mat-toolbar>
+</header>
+<body>
+<!-- SideNavBar with all available Pages: Currently CreateComponent and ComparismComponent-->
+<mat-sidenav-container>
+  <mat-sidenav #sidenav="matSidenav" class="mat-elevation-z8">
+    <button mat-button class="menu-button" routerLink="" (click)="sidenav.close()">
+      <mat-icon>show_chart</mat-icon>
+      <span>Visualisierung erstellen</span>
+    </button>
+    <button id="DisplayVisualizationBtn" mat-button class="menu-button" routerLink="/display" (click)="sidenav.close()">
+      <mat-icon>view_list</mat-icon>
+      <span>Visualisierung anzeigen</span>
+    </button>
+    <button mat-button class="menu-button" (click)="sidenav.close(); openDialog(); ">
+      <mat-icon>file_upload</mat-icon>
+      <span>Datenimport</span>
+    </button>
+    <mat-divider></mat-divider>
+    <div>
+      Made by Joel Temiz
+    </div>
+
+  </mat-sidenav>
+  <!--  Content of the Page: Router-Outlet
+        Router-Outlet can be the ComparismComponent or the CreateComponent
+        For editing add route in app.routing.module.ts -->
+  <mat-sidenav-content>
+    <router-outlet></router-outlet>
+  </mat-sidenav-content>
+</mat-sidenav-container>
+</body>
+<mat-spinner class="spinner" [diameter]="50" *ngIf="spinnerService.visibility | async"></mat-spinner>
+</html>
+

@@ -1,0 +1,29 @@
+<!--  This component is reachable on route '/'
+      It represents the component, where the user can modify and create his visualization
+-->
+<div class="jumbotron jumbotron-fluid jumbotron-fluid-custom">
+  <ul ngbNav #nav="ngbNav" class="nav-tabs">
+    <!-- HeatMap -->
+    <li [ngbNavItem]="1" [destroyOnHide]="false">
+      <a ngbNavLink>Heatmap</a>
+      <ng-template ngbNavContent>
+        <app-heatmap></app-heatmap>
+      </ng-template>
+    </li>
+    <!-- BarChart -->
+    <li [ngbNavItem]="2" [destroyOnHide]="false">
+      <a ngbNavLink>BarChart</a>
+      <ng-template ngbNavContent>
+        <app-bar-chart></app-bar-chart>
+      </ng-template>
+    </li>
+    <!-- Filter -->
+    <li [ngbNavItem]="3" id="FilterNavBtn">
+      <a ngbNavLink>Filter</a>
+      <ng-template ngbNavContent>
+        <app-filter></app-filter>
+      </ng-template>
+    </li>
+  </ul>
+  <div [ngbNavOutlet]="nav"></div>
+</div>

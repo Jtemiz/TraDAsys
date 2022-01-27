@@ -1,0 +1,79 @@
+<!--
+HeatMap visualization
+-->
+<div class="heatmap-container">
+  <div id="heatmap" class="custom-chart"></div>
+  <!--
+  Button- and Input-Group
+  -->
+  <table style="margin-left: 30px;">
+    <tr>
+      <td style=" padding-bottom: 22px;">
+        <button mat-raised-button color="primary" class="refresh-button-custom" (click)="updateChart()">
+          <mat-icon>autorenew</mat-icon>
+        </button>
+      </td>
+      <td>
+        <mat-form-field class="example-form-field" appearance="fill">
+          <mat-label>Visualisierungstitel</mat-label>
+          <input matInput type="text" [(ngModel)]="heatmapOptions.titleSettings.text">
+          <button matSuffix mat-icon-button aria-label="Save HeatMap" (click)="saveVisualization()">
+            <mat-icon>save</mat-icon>
+          </button>
+        </mat-form-field>
+      </td>
+      <td>
+        <mat-form-field class="example-form-field" appearance="fill">
+          <mat-label>Auflösung pro Achse</mat-label>
+          <input matInput type="number" [(ngModel)]="pixels">
+        </mat-form-field>
+      </td>
+      <td style=" padding-bottom: 22px;">
+        <button mat-raised-button color="primary" class="refresh-button-custom" id="ColorPickerBtn"
+                (click)="open(colorPickerModal)">
+          <mat-icon>color_lens</mat-icon>
+        </button>
+      </td>
+      <td>
+          <mat-slide-toggle [(ngModel)]="movementMode" color="primary"></mat-slide-toggle>
+          <p>Bewegungsmodus</p>
+      </td>
+    </tr>
+  </table>
+</div>
+
+<ng-template #colorPickerModal let-modal>
+  <div class="modal-header">
+    <h4 class="modal-title" id="modal-basic-title">Farbauswahl für Heatmap-Punkte</h4>
+    <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
+      <span aria-hidden="true">&times;</span>
+    </button>
+  </div>
+  <div class="modal-body">
+    <table class="table">
+      <tr *ngFor="let entry of heatmapOptions.paletteSettings.palette">
+        <td>{{entry.value}}</td>
+        <td><input type="color" class="form-control input-lg" [(ngModel)]="entry.color"></td>
+        <td>
+          <button mat-icon-button (click)="deletePaletteEntry(entry.value, entry.color)">
+            <mat-icon>delete</mat-icon>
+          </button>
+        </td>
+      </tr>
+      <tr>
+        <td><input matInput type="number" [(ngModel)]="choosedColor.value" id="addValueNumber"
+                   class="form-control input-lg" (keyup.enter)="addPaletteEntry()"></td>
+        <td><input type="color" [(ngModel)]="choosedColor.color" id="addValueColor" class="form-control input-lg"></td>
+        <td>
+          <button mat-icon-button (click)="addPaletteEntry()">
+            <mat-icon>save</mat-icon>
+          </button>
+        </td>
+      </tr>
+    </table>
+  </div>
+  <div class="modal-footer">
+    <button type="button" class="btn btn-outline-dark" (click)="modal.close()">Save</button>
+  </div>
+</ng-template>
+

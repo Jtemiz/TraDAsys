@@ -1,0 +1,23 @@
+<!--  This component is reachable on route '/display'
+      It represents the component, where the user can view and compare his created visualizations
+-->
+<div class="jumbotron jumbotron-fluid jumbotron-fluid-custom">
+  <!-- if there is no visualization, show this text -->
+  <p *ngIf="comparismService.getHeatMaps().length + comparismService.getBarCharts().length == 0"> keine Visualisierung
+    verfügbar</p>
+  <!-- if there if there is a heatmap: iterate through the heatmaps and create a div container for each -->
+  <div *ngFor="let heatMap of comparismService.getHeatMaps()" class="heatmap-container">
+    <ejs-heatmap id='container' class="custom-chart" [titleSettings]='heatMap.options.titleSettings'
+                 [dataSource]='heatMap.dataSource' [xAxis]='heatMap.options.xAxis'
+                 [yAxis]='heatMap.options.xAxis' [paletteSettings]="heatMap.options.paletteSettings"
+                 [renderingMode]="heatMap.options.renderingMode" [cellSettings]="heatMap.options.cellSettings"
+                 [legendSettings]="heatMap.options.legendSettings">
+    </ejs-heatmap>
+  </div>
+  <!--  now the same for the barCharts;
+        there is no html-tag for creating a bar chart, therefore id needs to be like this
+  -->
+  <div *ngFor="let barChart of barCharts">
+    <div [chart]="barChart" class="custom-chart"></div>
+  </div>
+</div>

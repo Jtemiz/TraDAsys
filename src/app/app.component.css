@@ -1,0 +1,104 @@
+/*
+SideNav & Menübar Styles
+ */
+
+mat-toolbar {
+  background: #004a9f;
+  color: white;
+}
+
+.example-spacer {
+  flex: 1 1 auto;
+}
+
+mat-sidenav {
+  margin: 16px;
+  width: fit-content;
+  border-right: none;
+  background: #002b5c;
+  color: white;
+  border-radius: 10px;
+  padding: 16px;
+  text-align: center;
+}
+
+.content {
+  height: calc(100vh - 98px);
+  border-radius: 10px;
+  margin: 16px;
+  margin-left: 32px;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  font-size: 2rem;
+  color: lightgray;
+}
+
+mat-sidenav-container {
+  height: calc(100vh - 80px);
+}
+
+.menu-button {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  font-size: 1rem;
+}
+
+mat-icon {
+  margin-right: 8px;
+}
+
+.designation {
+  margin-top: 2px;
+  font-size: 0.7rem;
+  color: lightgrey;
+}
+
+mat-divider {
+  margin-top: 16px;
+  margin-bottom: 16px;
+  background-color: rgba(255, 255, 255, 0.5);
+}
+
+.mat-drawer-container {
+  background: none;
+}
+
+.logo-fixed-top-custom {
+  margin-left: 60px;
+  width: 60px;
+}
+
+/*
+File Upload Modal
+ */
+
+::ng-deep.mat-dialog-container {
+  background: rgba(0, 74, 159, 0.8);
+}
+
+
+/*
+Spinner
+ */
+/* Absolute Center Spinner */
+.spinner {
+  position: fixed;
+  z-index: 999;
+  margin: auto;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0;
+  width: 50px;
+  height: 50px;
+}
+
+
+.navbar-button-custom {
+  margin: 0
+}

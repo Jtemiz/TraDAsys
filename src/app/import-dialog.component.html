@@ -1,0 +1,39 @@
+<!--
+Dialog for importing data.
+-->
+<div class="center" id="ngxFileDrop">
+  <!-- ngx-file-drop is a module for drag and drop files or folders -->
+  <ngx-file-drop dropZoneClassName="file-drop-custom" dropZoneLabel="Drop files here" (onFileDrop)="dropped($event)">
+    <ng-template ngx-file-drop-content-tmp let-openFileSelector="openFileSelector">
+      <p style="margin: 50px;"> Auszuwertene Daten hier rein!</p>
+      <!-- If the user doesn't want to drag and drop he can use a usual filepicker -->
+      <button id="filePickerBtn" mat-mini-fab color="primary" class="upload-btn"
+              (click)="openFileSelector()">
+        <mat-icon>attach_file</mat-icon>
+      </button>
+    </ng-template>
+  </ngx-file-drop>
+  <!-- this table shows all choosed files -->
+  <div class="upload-table table-wrapper-scroll-y my-custom-scrollbar" *ngIf="files.length != 0">
+    <table class="table">
+      <thead>
+      <tr>
+        <th>Ausgewählte Dateien</th>
+      </tr>
+      </thead>
+      <tbody class="upload-name-style">
+      <tr *ngFor="let item of files; let i=index">
+        <td><strong>{{ item.relativePath }}</strong></td>
+      </tr>
+      </tbody>
+    </table>
+  </div>
+  <!-- confirm and reject button for leave the dialog or send the files to the backend -->
+  <button mat-raised-button color="primary" mat-dialog-close style="float: left; margin-left: 5px"
+          (click)="transportFile()">
+    <mat-icon>file_upload</mat-icon>
+  </button>
+  <button [mat-dialog-close]="true" mat-raised-button color="warn" style="float: right; margin-right:5px;">
+    <mat-icon>cancel</mat-icon>
+  </button>
+</div>
